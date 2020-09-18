@@ -81,11 +81,13 @@ class SortingRobot:
         Turn on the robot's light
         """
         self._light = "ON"
+
     def set_light_off(self):
         """
         Turn off the robot's light
         """
         self._light = "OFF"
+
     def light_is_on(self):
         """
         Returns True if the robot's light is on and False otherwise.
@@ -95,9 +97,52 @@ class SortingRobot:
     def sort(self):
         """
         Sort the robot's list.
+        
+        A lot of restrictions that made this extra daunting
+        It could be bubble sort and insertion sort?
+        That could be useful.
+    
+        Start with the light on
         """
-        # Fill this out
-        pass
+        self.set_light_on() 
+
+        # If the light is on, it implies that a swap had to be initiated because the list was not sorted in proper order
+        while self.light_is_on(): 
+
+            # While moving right, initiate an item swap if either:
+            while self.can_move_right():
+
+            # compare_item() returns None or 
+            # compare_item()'s held item's value is less -1
+                if self.compare_item() == -1 or self.compare_item() == None:   
+                    self.swap_item()
+                
+                # Continue moving right
+                self.move_right()
+
+            # If we reach the right AND compare_item() returns None because
+            # One or both held items are None
+            if self.compare_item() == None: 
+
+                # Turn off the light in order to break the loop
+                self.set_light_off()       
+                break
+
+
+            # While moving left, if compare.item() is not None
+            while self.can_move_left() and self.compare_item() is not None:
+
+                # Initiate an item swap if the held item's value is greater than the iteam in front of the robot.
+                if self.compare_item() == 1: 
+                    self.swap_item()
+        
+                # Continue moving left
+                self.move_left()
+
+                # Eventually, if we're moving left and encounter None, then everything to the left should already sorted. The process should end automatically because compare.item() will no longer be returning a "not None" value.
+
+        # At this point everything should hopefully be in numerical order
+        return self._time
 
 
 if __name__ == "__main__":
