@@ -15,4 +15,4 @@ c) The runtime would be linear again or O(n) because the amount of operations ar
 ## Exercise II
 
 The goal would to minimize the amount of the egg cracking on the floors.
-I guess since you are looping the floors once then it would O(n). Meaning it would be linear. We would need to loop through the floors n times to find 'f' floor the optimal floor. 
+I guess since you are looping the floors once then it would O(n). Meaning it would be linear. We would need to loop through the floors n times to find 'f' floor the optimal floor. The more floors the more operations.
